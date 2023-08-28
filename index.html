@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DAL</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app" :class="{ 'night-mode': isNightMode }">
+    <h1>"Deutschland: Artikel lernen!" - DAL</h1>
+    <div class="word-display" :class="wordColor">{{ randomWord }}</div>
+    <div class="button-container">
+      <button v-for="obj of ['Der', 'Die', 'Das']" @click="checkArticle(obj)" :class="getClass(obj)" :disabled="blockClicks" class="responsive"> {{ obj }}</button>
+    </div>
+    <div class="countAnswer">
+      <div class="correct"> Richtig: {{ rightScore }}</div>
+      <div class="incorrect"> Falsch: {{ wrongScore }}</div>
+    </div>
+    <div class="button-container">
+      <button @click="updateWord">Aktualisieren Sie das Wort (<span class="redtimer">{{ timer }}</span>)</button>
+    </div>
+    <div class="word-count">
+      <h2>Wortanzahl</h2>
+      <ul>
+        <li>Wörter mit Artikel 'Der': {{ wordCount.der }}</li>
+        <li>Wörter mit Artikel 'Die': {{ wordCount.die }}</li>
+        <li>Wörter mit Artikel 'Das': {{ wordCount.das }}</li>
+      </ul>
+    </div>
+    <div class="night-mode-toggle">
+      <label>
+        <div class="switch-ios" :class="{ checked: isNightMode }">
+          <input type="checkbox" v-model="isNightMode" class="switch-ios-input">
+        </div>    <span>Nachtmodus</span>
+      </label>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
